@@ -3,7 +3,7 @@
                  [org.clojure/clojurescript "1.10.238"]
                  [reagent "0.7.0"]
                  [re-frame "0.10.5"]
-                 [statecharts "0.2.1"]
+                 [statecharts "0.2.2"]
                  [day8.re-frame/http-fx "0.1.6"]
                  [funcool/struct "1.2.0"]
                  [com.andrewmcveigh/cljs-time "0.5.2"]]
