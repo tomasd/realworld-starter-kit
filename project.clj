@@ -2,7 +2,11 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
                  [reagent "0.7.0"]
-                 [re-frame "0.10.5"]]
+                 [re-frame "0.10.5"]
+                 [statecharts "0.2.1"]
+                 [day8.re-frame/http-fx "0.1.6"]
+                 [funcool/struct "1.2.0"]
+                 [com.andrewmcveigh/cljs-time "0.5.2"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]]
 
@@ -16,7 +20,8 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.9.9"]]
+   {:dependencies [[binaryage/devtools "0.9.10"]
+                   [day8.re-frame/re-frame-10x "0.3.1"]]
 
     :plugins      [[lein-figwheel "0.5.13"]]}}
 
@@ -26,12 +31,15 @@
      :source-paths ["src/cljs"]
      :figwheel     {:on-jsload "realworld.core/mount-root"}
      :compiler     {:main                 realworld.core
+                    :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
                     :output-to            "resources/public/js/compiled/app.js"
                     :output-dir           "resources/public/js/compiled/out"
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true
-                    :preloads             [devtools.preload]
+                    :preloads             [devtools.preload
+                                           day8.re-frame-10x.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
+                    :aot-cache true
                     }}
 
     {:id           "min"
