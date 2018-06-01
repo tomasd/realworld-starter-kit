@@ -5,7 +5,8 @@
     [statecharts.re-frame :as scr]
     [cljs-time.coerce :refer [to-long]]
     [re-frame.core :as re-frame]
-    [realworld.machines :as machines]))
+    [realworld.machines :as machines]
+    [realworld.pages.core :as pages]))
 
 
 (defn add-epoch [date coll]
@@ -186,3 +187,6 @@
        [:p "Popular Tags"]
 
        [tags-list]]]]]])
+
+(defmethod pages/page-content :page/home [page args]
+  [home-page])

@@ -1,7 +1,8 @@
 (ns realworld.pages.article
   (:require
     [realworld.components :as components]
-    [statecharts.re-frame :as scr]))
+    [statecharts.re-frame :as scr]
+    [realworld.pages.core :as pages]))
 
 (def statechart
   {})
@@ -81,3 +82,6 @@
         [:span.mod-options
          [:i.ion-edit]
          [:i.ion-trash-a]]]]]]]])
+
+(defmethod pages/page-content :page/article [page args]
+  [article-page])

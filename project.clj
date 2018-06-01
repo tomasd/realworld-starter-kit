@@ -1,12 +1,13 @@
 (defproject realworld "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.10.238"]
-                 [reagent "0.7.0"]
+                 [reagent "0.8.1"]
                  [re-frame "0.10.5"]
-                 [statecharts "0.2.2"]
+                 [statecharts "0.2.3"]
                  [day8.re-frame/http-fx "0.1.6"]
                  [funcool/struct "1.2.0"]
-                 [com.andrewmcveigh/cljs-time "0.5.2"]]
+                 [com.andrewmcveigh/cljs-time "0.5.2"]
+                 [bidi "2.1.3"]]
 
   :plugins [[lein-cljsbuild "1.1.5"]]
 
@@ -21,7 +22,7 @@
   :profiles
   {:dev
    {:dependencies [[binaryage/devtools "0.9.10"]
-                   [day8.re-frame/re-frame-10x "0.3.1"]]
+                   [day8.re-frame/re-frame-10x "0.3.3"]]
 
     :plugins      [[lein-figwheel "0.5.13"]]}}
 
@@ -39,7 +40,7 @@
                     :preloads             [devtools.preload
                                            day8.re-frame-10x.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}
-                    :aot-cache true
+                    ;:aot-cache true
                     }}
 
     {:id           "min"

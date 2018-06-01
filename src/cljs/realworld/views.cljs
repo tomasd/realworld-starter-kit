@@ -1,6 +1,7 @@
 (ns realworld.views
   (:require [re-frame.core :as re-frame]
             [realworld.subs :as subs]
+            [realworld.pages.core :as pages]
             [realworld.pages.home :refer [home-page]]
             [realworld.pages.sign_in :refer [sign-in-page]]
             [realworld.pages.sign_up :refer [sign-up-page]]
@@ -35,10 +36,16 @@
 (def anonymous-pages
   (machines/page-machine
     {:enter       [(scr/ctx-assoc-db-in [:user-status] :anonymous)]
-     :init        :page/home
-     :states      {:page/home    realworld.pages.home/statechart
-                   :page/sign-in realworld.pages.sign_in/statechart
-                   :page/sign-up realworld.pages.sign_up/statechart}
+     :init        :initialize-from-url
+     :states      {:initialize-from-url {:enter [(fn [ctx _]
+
+                                                   (-> ctx
+                                                       (scr/push-event  [:goto/page :page/home])
+                                                       ;(scr/dispatch  [:goto/page :page/home])
+                                                       ))]}
+                   :page/home           realworld.pages.home/statechart
+                   :page/sign-in        realworld.pages.sign_in/statechart
+                   :page/sign-up        realworld.pages.sign_up/statechart}
      :transitions [{:event  :toggle-favorite-article
                     :target :page/sign-in}]}))
 
@@ -85,19 +92,4 @@
     [:div
      [top-navbar]
      [:div (pr-str page)]
-     (case page
-       :page/sign-in
-       [sign-in-page]
-       :page/sign-up
-       [sign-up-page]
-       :page/home
-       [home-page]
-       :page/profile
-       [profile-page]
-       :page/settings
-       [settings-page]
-       :page/article-form
-       [article-form]
-       :page/article
-       [article-page]
-       "Loading...")]))
+     [pages/page-content page {}]]))

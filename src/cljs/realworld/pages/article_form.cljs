@@ -1,7 +1,8 @@
 (ns realworld.pages.article-form
   (:require
     [realworld.form :refer [input]]
-    [statecharts.re-frame :as scr]))
+    [statecharts.re-frame :as scr]
+    [realworld.pages.core :as pages]))
 
 (def statechart
   {})
@@ -29,3 +30,6 @@
                       :placeholder "Enter tags"}]
          [:button.btn.btn-lg.btn-primary.pull-xs-right
           "Publish Article"]]]]]]))
+
+(defmethod pages/page-content :page/article-form [page args]
+  [article-form])

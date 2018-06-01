@@ -3,7 +3,8 @@
     [realworld.form :as form :refer [input]]
     [statecharts.re-frame :as scr]
     [re-frame.core :as re-frame]
-    [realworld.fx :as fx]))
+    [realworld.fx :as fx]
+    [realworld.pages.core :as pages]))
 
 (def statechart
   (let [form-path [:sign-in-form]]
@@ -55,3 +56,6 @@
          [:button.btn.btn-lg.btn-primary.pull-xs-right
           {:type :submit}
           "Sign up"]]]]]]))
+
+(defmethod pages/page-content :page/sign-in [page args]
+  [sign-in-page])

@@ -1,6 +1,7 @@
 (ns realworld.pages.profile
   (:require [realworld.components :as components]
-            [statecharts.re-frame :as scr]))
+            [statecharts.re-frame :as scr]
+            [realworld.pages.core :as pages]))
 
 (def statechart
   {})
@@ -37,3 +38,6 @@
                            :heart       29
                            :title       "How to build webapps that scale"
                            :description "This is the description for the post."}]]]]])
+
+(defmethod pages/page-content :page/profile [page args]
+  [profile-page])

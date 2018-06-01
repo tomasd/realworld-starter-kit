@@ -1,7 +1,8 @@
 (ns realworld.pages.settings
   (:require
     [realworld.form :refer [input]]
-    [statecharts.re-frame :as scr]))
+    [statecharts.re-frame :as scr]
+    [realworld.pages.core :as pages]))
 
 (def statechart
   {})
@@ -34,3 +35,6 @@
                       :placeholder "Password"}]
          [:button.btn.btn-lg.btn-primary.pull-xs-right
           "Update Settings"]]]]]]))
+
+(defmethod pages/page-content :page/settings [page args]
+  [settings-page])
